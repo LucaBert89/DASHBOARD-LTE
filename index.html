@@ -22,9 +22,23 @@
                     <div id="hamburger">
                         <i class="fas fa-bars"></i>
                     </div>
-                    <div class="dark-button">
-                        <input type="checkbox" id="dark-btn" name="dark">
-                        <label for="dark"><span>Dark Mode</span></label>
+                    <div id="themeSelector">
+                        <div id="themeBtn">
+                            <span>Change Theme</span>
+                        </div>
+                        <div id="dropdown-themes">
+                            <ul id="themeSelection">
+                                <li class="themes bcwhite" value="#ECF0F5"></li>
+                                <li class="themes bcblack" value="#000"></li>
+                                <li class="themes bcgr" value="#00A65A"></li>
+                                <li class="themes bclightb" value="#00C0EF"></li>
+                            </ul>
+                        </div>
+                       <!-- <select name="" id="themeSelector">
+                            <option class="themes" value="#ECF0F5">light</option>
+                            <option class="themes" value="black">dark</option>
+                        </select>-->
+                        
                     </div>
                     <div id="menu" class="w-100">
                         <ul id="icon-list">
@@ -214,7 +228,7 @@
             </div>
         </section>
  
-        <div id="main-site">
+        <div id="main-site" class="bcmain">
             <section id="header">
                 <div class="title">
                     <h1 id="dash-title">Dashboard</h1>

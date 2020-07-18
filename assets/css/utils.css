@@ -1,3 +1,9 @@
+:root {
+    --dark: #000;
+    --mainbc: #ECF0F5;
+    --light: #fff;  
+}
+
 .w-100 {
     width: 100%;
 }
@@ -34,7 +40,6 @@
 
 .bcor {
     background-color: #F39C12;
-    
 }
 
 .bclightb {
@@ -42,7 +47,7 @@
 }
 
 .bcwhite {
-    background-color: #fff;
+    background-color: var(--light);
 }
 
 .bclightgrey {
@@ -51,6 +56,14 @@
 
 .bcdark {
     background-color: rgb(0,0,0,0.2);
+}
+
+.bcmain {
+    background-color: var(--mainbc);
+}
+
+.bcblack {
+    background-color: var(--dark);
 }
 
 /* background list side bar */
@@ -167,3 +180,6 @@
     border-top: 3px solid #3C8DBC;
 }
 
+.bcdarkgrey {
+    background-color: #222D32;
+}

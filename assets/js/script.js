@@ -1,46 +1,80 @@
-let BtnDark = document.querySelector("#dark-btn");
-let mainSite = document.querySelector("#main-site");
-let dashtitle = document.querySelector("#dash-title");
-let bcWhite = document.querySelectorAll(".bcwhite");
-let darkmodeColor = document.querySelectorAll("div");
+const themeBtn = document.querySelector("#themeSelector");
+const themeSelection = document.querySelector("#themeSelection")
+const themes = document.querySelectorAll(".themes");
+const divs = document.querySelectorAll("div");
+const mainBackground = "--mainbc";
+const mainSite = document.querySelector("#main-site");
+const arrows = document.querySelector(".arrows");
 
 
 (function init() {
-   BtnDark.addEventListener("click", SetDark);
-  /*BtnDark.addEventListener("click", () => {
-        if(mainSite.className == "dark whitec") {
-            console.log(event.target);
-            mainSite.classList.remove("dark");
-            dashtitle.classList.remove("whitec");
-            mainSite.classList.remove("whitec");
-            bcWhite.forEach(el =>el.style.backgroundColor = "#fff");
-        } else {
-            mainSite.classList.add("dark");
-            dashtitle.classList.add("whitec");
-            bcWhite.forEach(el =>el.style.backgroundColor = "#222D32");
-            mainSite.classList.add("whitec");
-        }
-    });*/
+    for(i=0; i < themes.length; i++) {
+        themes[i].addEventListener("click", setTheme);
+    }
+  
+   themeBtn.addEventListener("click", openMenu);
 })();
 
 
-/* 2^ solution */
+function openMenu() {
+    themeSelection.classList.toggle("active");
+}
 
-function SetDark() {
-    if(mainSite.className == "dark whitec") {
-        dashtitle.classList.remove("whitec");
-        mainSite.classList.remove("dark", "whitec");
-        for(i=0; i< darkmodeColor.length; i++) {
-            if(darkmodeColor[i].getAttribute("data-class")) {
-                darkmodeColor[i].classList.remove("bcdarkgrey");
-                darkmodeColor[i].classList.add("bcwhite");
-        }}
+
+function setTheme (event) {
+    const clicked = event.target.getAttribute("value");
+    
+    if(localStorage.getItem("color")) {
+        localStorage.setItem("color", clicked); 
+        document.documentElement.style.setProperty(mainBackground, localStorage.getItem("color"));
     } else {
-        mainSite.classList.add("dark", "whitec");
-        for(i=0; i< darkmodeColor.length; i++) {
-            if(darkmodeColor[i].getAttribute("data-class")) {
-                darkmodeColor[i].classList.add("bcdarkgrey");
-        }
-        dashtitle.classList.add("whitec");
+        let localColor = localStorage.getItem("color");
+        document.documentElement.style.setProperty(mainBackground, localColor);
     }
-    }}
+    local();
+    if(clicked !== "#ECF0F5") {
+        setDarkBg();
+    } else {
+        setWhiteBg();
+    }
+}
+
+function local () {
+    localStorage.getItem("backgrounddark");
+    localStorage.getItem("backgroundWhite");
+    localStorage.getItem("colorWhite");
+
+    localStorage.setItem("backgrounddark", "bcdarkgrey");
+    localStorage.setItem("backgroundWhite", "bcwhite");
+    localStorage.setItem("colorWhite", "whitec");
+}
+
+document.documentElement.style.setProperty(mainBackground, localStorage.color);
+
+
+
+if(localStorage.getItem("color") !== "#ECF0F5") {
+    setDarkBg();
+} else {
+    setWhiteBg();
+}
+
+function setDarkBg () {
+    mainSite.classList.add(localStorage.getItem("colorWhite"));
+    for(i=0; i< divs.length; i++) {
+        if(divs[i].getAttribute("data-class")) {
+            divs[i].classList.add(localStorage.getItem("backgrounddark"));
+            divs[i].classList.remove(localStorage.getItem("backgroundWhite"));
+        }
+    }
+};
+
+function setWhiteBg() {
+    mainSite.classList.remove("whitec");
+    for(i=0; i< divs.length; i++) {
+        if(divs[i].getAttribute("data-class")) {
+            divs[i].classList.remove("bcdarkgrey");
+            divs[i].classList.add("bcwhite");
+        }
+    }
+}
