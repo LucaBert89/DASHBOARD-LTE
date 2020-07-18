@@ -77,7 +77,7 @@ h4 {
 #themeSelector {
     position: absolute;
     height:100%;
-    left: 50px;
+    left: 40px;
     top: 8px;
     cursor: pointer;
 }
@@ -181,6 +181,7 @@ h4 {
 
     #themeSelector {
         top: 5px;
+        left:50px;
     }
     
     #themeBtn span {
