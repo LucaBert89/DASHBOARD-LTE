@@ -78,7 +78,7 @@ h4 {
     position: absolute;
     height:100%;
     left: 50px;
-    top: 5px;
+    top: 8px;
     cursor: pointer;
 }
 
@@ -91,6 +91,7 @@ h4 {
     color: #fff;
     background-color:transparent;
     display:inline-block;
+    font-size: 9px;
 }
 
 #themeSelection {
@@ -176,6 +177,14 @@ h4 {
         height:25px;
         border-radius: 50%;
         float:left;
+    }
+
+    #themeSelector {
+        top: 5px;
+    }
+    
+    #themeBtn span {
+        font-size:13px;
     }
 }
 
