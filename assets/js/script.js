@@ -20,44 +20,37 @@ function openMenu() {
     themeSelection.classList.toggle("active");
 }
 
-
 function setTheme (event) {
     const clicked = event.target.getAttribute("value");
-    
-    if(localStorage.getItem("color")) {
-        localStorage.setItem("color", clicked); 
-        document.documentElement.style.setProperty(mainBackground, localStorage.getItem("color"));
-    } else {
-        let localColor = localStorage.getItem("color");
-        document.documentElement.style.setProperty(mainBackground, localColor);
-    }
-    local();
-    if(clicked !== "#ECF0F5") {
-        setDarkBg();
-    } else {
-        setWhiteBg();
-    }
+    localColors(clicked);
+    darkorwhite();
 }
 
-function local () {
+
+function localColors (data) {
     localStorage.getItem("backgrounddark");
     localStorage.getItem("backgroundWhite");
     localStorage.getItem("colorWhite");
+    localStorage.getItem("color");
 
     localStorage.setItem("backgrounddark", "bcdarkgrey");
-    localStorage.setItem("backgroundWhite", "bcwhite");
+    localStorage.setItem("backgroundWhite", "#ECF0F5");
     localStorage.setItem("colorWhite", "whitec");
+
+    localStorage.setItem("color", data); 
+    document.documentElement.style.setProperty(mainBackground, localStorage.getItem("color"));
+ 
 }
 
-document.documentElement.style.setProperty(mainBackground, localStorage.color);
+document.documentElement.style.setProperty(mainBackground, localStorage.getItem("color"));
 
 
 
-if(localStorage.getItem("color") !== "#ECF0F5") {
-    setDarkBg();
-} else {
-    setWhiteBg();
+function darkorwhite() {
+    localStorage.getItem("color") !== "#ECF0F5" ? setDarkBg() : setWhiteBg();
 }
+
+darkorwhite();
 
 function setDarkBg () {
     mainSite.classList.add(localStorage.getItem("colorWhite"));
@@ -70,11 +63,11 @@ function setDarkBg () {
 };
 
 function setWhiteBg() {
-    mainSite.classList.remove("whitec");
+    mainSite.classList.remove(localStorage.getItem("colorWhite"));
     for(i=0; i< divs.length; i++) {
         if(divs[i].getAttribute("data-class")) {
-            divs[i].classList.remove("bcdarkgrey");
-            divs[i].classList.add("bcwhite");
+            divs[i].classList.remove(localStorage.getItem("backgrounddark"));
+            divs[i].classList.add(localStorage.getItem("backgroundWhite"));
         }
     }
 }
